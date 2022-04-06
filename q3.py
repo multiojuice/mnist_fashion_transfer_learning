@@ -16,12 +16,17 @@ x_train = tf.image.grayscale_to_rgb(
     name=None
 )
 
+x_test = tf.image.grayscale_to_rgb(
+    x_test,
+    name=None
+)
+
 print(x_train.shape)
 
-x_val = x_train[-2000:,:,:,:]
-y_val = y_train[-2000:]
-x_train = x_train[:-2000,:,:,:]
-y_train = y_train[:-2000]
+x_val = x_train[-12000:,:,:,:]
+y_val = y_train[-12000:]
+x_train = x_train[:-12000,:,:,:]
+y_train = y_train[:-12000]
 
 
 base_model = tf.keras.applications.VGG16(
@@ -52,8 +57,6 @@ history = fashion_model.fit(x_train, y_train,
                     epochs=20,
                     batch_size=64,
                     validation_data=(x_val, y_val))
-
-fashion_model.save('mnist_fashion_VGG16_model')
 
 
 from sklearn.metrics import confusion_matrix
@@ -106,3 +109,4 @@ fig, axs = plt.subplots(10, 2)
 for i in range(10):
     axs[i, 0].imshow(x_test_o[true_array[i]], cmap='gray_r')
     axs[i, 1].imshow(x_test_o[false_array[i]], cmap='gray_r')
+plt.show()

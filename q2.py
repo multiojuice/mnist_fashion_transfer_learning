@@ -35,6 +35,8 @@ axs[1].plot(history.history['val_accuracy'])
 axs[1].title.set_text('Training Accuracy vs Validation Accuracy')
 axs[1].legend(['Train', 'Val'])
 
+plt.show()
+
 loss0, accuracy0 = pre_trained_model.evaluate(x_test, y_test)
 print(loss0, accuracy0)
 
@@ -65,7 +67,7 @@ axs[1].legend(['Train', 'Val'])
 
 loss0, accuracy0 = model.evaluate(x_test, y_test)
 print(loss0, accuracy0)
-
+plt.show()
 
 """
 Get metrics nad plots
@@ -122,3 +124,4 @@ for i in range(10):
   axs[i, 1].imshow(x_test_o[false_array[i]], cmap='gray_r')
 
 pre_trained_model.save('mnsit_fashion_pretrained_model')
+plt.show()
